@@ -1,0 +1,25 @@
+
+#
+# Launchify Config
+#
+
+app:
+  name: "ht-demo"
+  exec: "nw ."
+
+scripts:
+  publish: 
+
+updates:
+  repository: "http://hannig.cc/ht-demo"
+  interval: "10 seconds"
+
+  # Keep the last 5 releases
+  keep: 5
+
+  # Release signatures
+  gpg:
+    key: "04060B1D"
+    uid: "Matthias Hannig (Codesign) <matthias@hannig.cc>"
+    fingerprint: "EEC0C86ADC88BA863EE6D6B51CBED1D004060B1D"
+  
