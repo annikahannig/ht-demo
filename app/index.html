@@ -10,9 +10,34 @@
         background: #000000;
       }
 
+      .ht {
+        position: absolute;
+        top: 120px;
+        width: 100%;
+      }
+
+      .ht img {
+        display: block;
+        margin: 0px auto;
+      }
+
+      .version {
+        font-size: 28px;
+        color: #00aa00;
+        font-family: monospace;
+
+        text-align: center;
+      }
+
     </style>
   </head>
   <body>
+    <div class="ht">
+      <img src="assets/ht_inv.gif"  />
+      <div class="version"> 
+        V 2.0.0 - Thank you!
+      </div>
+    </div>
     <canvas id="cnv"></canvas>
     <script src="js/mth.js"></script>
     <script src="js/main.js"></script>

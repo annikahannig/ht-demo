@@ -6,6 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "window": {
+    "title": "Hack+Tell Demo!",
+    "width": 1024,
+    "height": 680,
+    "toolbar": false
+  },
   "author": "",
   "license": "ISC"
 }

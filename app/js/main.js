@@ -5,6 +5,9 @@
  */
 
 
+
+/*
+
 var Star = function(ctx) { 
   this.ctx = ctx;
   this.canvas = ctx.canvas;
@@ -60,11 +63,28 @@ Starfield.prototype.draw = function() {
   }
 };
 
+*/
+
 // .::..::.
 
 var D = function(canvas) {
+  var self = this;
   this.canvas = canvas;
   this.ctx    = canvas.getContext('2d');
+
+  // Initialize starfield
+  this.starcount = 500;
+  this.starfield = new Array(this.starcount);
+
+  console.log("[Starfield] Init.");
+  for(var i = 0; i<self.starcount; i++) {
+    // [x,y,z]
+    self.starfield[i] = [
+      1 - 2*Math.random(),
+      1 - 2*Math.random(),
+      Math.random()*0.02
+    ];
+  }
 };
 
 D.prototype.resize = function() {
@@ -81,11 +101,29 @@ D.prototype.resize = function() {
 D.prototype.render = function() {
   var self = this;
 
-  self.ctx.fillStyle = "rgba(0, 0, 0, 1)"; // motionblur
+  self.ctx.fillStyle = "rgba(0, 0, 0, 0.275)"; // motionblur
   self.ctx.fillRect(0, 0, self.canvas.width, self.canvas.height);
 
-  self.sf.animate();
-  self.sf.draw();
+  var w = self.ctx.canvas.width;
+  var h = self.ctx.canvas.height;
+
+  // Render starfield
+  for(var i = 0; i<self.starcount; i++) {
+    var s = self.starfield[i];
+    var px = 0.5*w + (s[0] / s[2]);
+    var py = 0.5*h + (s[1] / s[2]);
+    var alpha = (1/s[2])/333;
+    
+    if( px > w || px <= 0 || py > h || py <= 0 ) {
+      s[2] = Math.random()*0.02;
+    }
+
+    self.ctx.fillStyle = 'rgba(255, 255, 255, '+alpha+')'; // motionblur
+    self.ctx.fillRect( px, py, 2, 2 );
+
+    s[2] -= 0.0001;
+    
+  }
 };
 
 D.prototype.animate = function(t) {
@@ -101,8 +139,9 @@ D.prototype.run = function() {
   var self = this;
   self.t = 0;
   self.resize();
-  self.sf = new Starfield(this.ctx, 500);
   self.animate(0);
+
+
 };
 
 
