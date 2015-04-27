@@ -21,7 +21,7 @@ scripts:
 
 updates:
   repository: "http://localhost:9998/updates"
-  interval: "15 min"
+  interval: "5 seconds"
 
   # Keep the last 5 releases
   keep: 5
